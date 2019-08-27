@@ -24,7 +24,7 @@ public class FileReader {
 
     // Asynchronously strip down characters
     public static CompletableFuture<String> stripDownInvalidCharacters(String s) {
-        String result = "";
+        String result;
         try {
             result = s
                     .replaceAll("[^A-Za-z0-9]", "")
