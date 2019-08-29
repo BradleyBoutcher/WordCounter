@@ -1,8 +1,5 @@
 package com.bboutcher;
 
-import static com.ea.async.Async.await;
-import static java.util.concurrent.CompletableFuture.completedFuture;
-
 import com.ea.async.Async;
 
 import java.io.File;
@@ -12,22 +9,21 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 
+import static com.ea.async.Async.await;
+import static java.util.concurrent.CompletableFuture.completedFuture;
+
 /**
  * A utility class designed to validate and read file paths,
  * and their correlating file
  */
 public class FileReader {
-    // Accept any word character, [a-aAz-Z_0-9]
-    public FileReader() {
-        Async.init();
-    }
 
     // Asynchronously strip down characters
     public static CompletableFuture<String> stripDownInvalidCharacters(String s) {
         String result;
         try {
             result = s
-                    .replaceAll("[^A-Za-z0-9]", "")
+                    .replaceAll("[^A-Za-z0-9]", " ")
                     .toLowerCase();
         } catch (Throwable t) {
             t.printStackTrace();
@@ -36,7 +32,11 @@ public class FileReader {
         return completedFuture(result);
     }
 
-    public CompletableFuture<List<String>> readFile(String filename) throws FileNotFoundException {
+    public CompletableFuture<Void> readFile(String file) {
+        return completedFuture(null);
+    }
+
+    public CompletableFuture<List<String>> readFile(File f) throws FileNotFoundException {
         String fileName = "C:\\Users\\Bradley Boutcher\\Desktop\\test.txt";
         File textFile = new File(fileName);
 

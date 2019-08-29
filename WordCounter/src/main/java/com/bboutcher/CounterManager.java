@@ -1,13 +1,12 @@
 package com.bboutcher;
 
-import static com.ea.async.Async.await;
-import static java.util.concurrent.CompletableFuture.completedFuture;
-
-import com.ea.async.Async;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
+
+import static com.ea.async.Async.await;
+import static java.util.concurrent.CompletableFuture.completedFuture;
 
 /**
  * Class for creating, storing, and accessing multiple
@@ -22,6 +21,7 @@ final class CounterManager {
         PRINT,
         OPEN,
         SAVE,
+        LIST,
         DELETE,
         EXIT,
     }
@@ -39,20 +39,21 @@ final class CounterManager {
     // Avoid instantiation, effectively a static class
     private CounterManager() {}
 
-    static void start() throws Exception {
-        Async.init();
+    static void start() {
         start(ManagementStages.INPUT);
     }
 
     /**
-     * The state or stage management method of our management class
+     * The state / stage management method of our management class
      * Allows us to continue to provide and act upon user input until user
      * is finished
      *
      * @param stage Current step or stage of the countermanager
      * @throws Exception
      */
-    private static CompletableFuture<Void> start(ManagementStages stage) throws Exception {
+    private static CompletableFuture<Void> start(ManagementStages stage) {
+        System.out.println();
+
         switch (stage) {
             case INPUT: {
                 currentStage = await(handleInput());
@@ -66,14 +67,23 @@ final class CounterManager {
                 currentStage = await(accessWordCounter());
                 return start(currentStage);
             }
+            case DELETE: {
+                currentStage = await(deleteWordCounter());
+                return start(currentStage);
+            }
+            case SAVE: {
+                currentStage = await(saveWordCounter());
+                return start(currentStage);
+            }
             case PRINT: {
                 System.out.println("The aggregated word count for the current Word Counter is...");
                 return start(currentStage);
             }
+            case LIST: {
+                currentStage = await(listWordCounters());
+                return start(currentStage);
+            }
             case EXIT: {
-                input = null;
-                temporary = null;
-                wordCounters.clear();
                 System.out.println("Thank you for using Word Counter!");
                 break;
             }
@@ -87,9 +97,9 @@ final class CounterManager {
      *
      * @throws Exception
      */
-    private static CompletableFuture<ManagementStages> handleInput() throws Exception {
+    private static CompletableFuture<ManagementStages> handleInput() {
 
-        int answer = getIntegerInput(
+        int answer = Utilities.getIntegerInput(
                 "Please choose a command: " +
                         "\n 1: Create a new Word Reader " +
                         "\n 2: Print a saved Word Reader" +
@@ -115,18 +125,12 @@ final class CounterManager {
     }
 
     // NEW
-    private static CompletableFuture<ManagementStages> createWordCounter() throws Exception{
+    private static CompletableFuture<ManagementStages> createWordCounter() {
+        // Instantiate & Start Interface for new Word Counter
         temporary = new WordCounter();
         temporary.start();
 
-        String answer = getStringInput("Save current Word Counter? ( Y / N )");
-
-        // Validate input
-        try {
-            answer = input.next("[yYnN]");
-        } catch (Exception e) {
-            retry(ManagementStages.NEW);
-        }
+        String answer = Utilities.getStringInput("Save current Word Counter? ( Y / N )");
 
         // Save or continue without saving
         if (answer.matches("[yY]")) {
@@ -142,8 +146,8 @@ final class CounterManager {
 
     // SAVE
     // Store a given word counter with an associated key
-    private static void saveWordCounter() throws Exception {
-        String name = getStringInput("Please provide a name for to save this Word Counter.");
+    private static CompletableFuture<ManagementStages> saveWordCounter() {
+        String name = Utilities.getStringInput("Please provide a name for to save this Word Counter.");
 
         if (temporary == null) {
             log.fine("Cannot save null WordCounter.");
@@ -151,9 +155,10 @@ final class CounterManager {
         try {
             wordCounters.put(name, temporary);
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new Exception(e);
+            System.out.println("An error has occurred. Unable to save word counter.");
         }
+
+        return completedFuture(ManagementStages.INPUT);
     }
 
     // OPEN
@@ -182,17 +187,20 @@ final class CounterManager {
 
     // DELETE
     // Remove a word counter with a given key
-    private static CompletableFuture<ManagementStages> deleteWordCounter() throws Exception {
-        String key = getStringInput("Please enter the name for a saved WordCounter you would like to delete.");
+    private static CompletableFuture<ManagementStages> deleteWordCounter()
+    {
+        String key = Utilities.getStringInput("Please enter the name for a saved WordCounter you would like to delete.");
 
-        if (key.isEmpty()) {
+        if (key.isEmpty())
+        {
             log.fine("Lookup key for WordCounter is empty.");
         }
 
-        try {
+        try
+        {
             wordCounters.remove(key);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e)
+        {
             System.out.println("Unable to delete specified Word Counter");
             return completedFuture(ManagementStages.INPUT);
         }
@@ -201,20 +209,22 @@ final class CounterManager {
         return completedFuture(ManagementStages.INPUT);
     }
 
-    private static String getStringInput(String message) {
-        input = new Scanner(System.in);
-        System.out.println(message);
-        return input.next();
-    }
-
-    private static int getIntegerInput(String message) {
-        input = new Scanner(System.in);
-        System.out.println(message);
-        return input.nextInt();
-    }
-
-    private static void retry(ManagementStages stage) throws Exception {
+    private static void retry(ManagementStages stage)
+    {
         System.out.println("Invalid input, please try again.");
         start(stage);
+    }
+
+    private static CompletableFuture<ManagementStages> listWordCounters()
+    {
+        if (wordCounters.size() == 0) {
+            System.out.print("No WordCounters saved.");
+            return completedFuture(ManagementStages.INPUT);
+        }
+
+        System.out.print("Saved Word Counters: ");
+        wordCounters.forEach((k, w) -> System.out.print(k));
+
+        return completedFuture(ManagementStages.INPUT);
     }
 }

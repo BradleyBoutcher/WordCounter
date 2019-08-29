@@ -4,7 +4,8 @@ import com.ea.async.Async;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        Utilities.openConsole();
         Async.init();
         CounterManager.start();
     }
