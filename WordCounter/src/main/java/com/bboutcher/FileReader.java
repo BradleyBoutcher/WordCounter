@@ -2,6 +2,7 @@ package com.bboutcher;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
@@ -87,7 +88,7 @@ class FileReader {
     {
         HashMap<String, Integer> currentWordSet = new HashMap<>();
 
-        try (Scanner words = new Scanner(f)) {
+        try (Scanner words = new Scanner(f, StandardCharsets.UTF_8.name())) {
             words.forEachRemaining((word) -> {
                 word = await(stripDownInvalidCharacters(word));
                 // If the word already exists, add it
@@ -158,7 +159,8 @@ class FileReader {
      */
     private CompletableFuture<Void> decrementTotal(String key)
     {
-        try {
+        try
+        {
             // decrement
             this.wordCount.computeIfPresent(key, (k, v) -> v--);
             // remove if word no longer exists in files

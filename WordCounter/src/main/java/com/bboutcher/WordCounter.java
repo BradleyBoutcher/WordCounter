@@ -193,8 +193,8 @@ class WordCounter {
             FileDialog fd = new FileDialog(frame, "Please choose one or more files", FileDialog.LOAD);
             fd.setDirectory("C:\\");
 
-            // Filter out non text files
-            fd.setFilenameFilter((dir, name) -> name.matches(".*(\\.txt)") || name.matches("^[.]"));
+            // Filter out non text files - uncomment to filer non generic text files
+            // fd.setFilenameFilter((dir, name) -> name.matches(".*(\\.txt)") || name.matches("^[.]"));
 
             fd.setMultipleMode(true);
             fd.setVisible(true);

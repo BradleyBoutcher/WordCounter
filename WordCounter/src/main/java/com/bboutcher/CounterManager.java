@@ -1,7 +1,6 @@
 package com.bboutcher;
 
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
@@ -31,8 +30,6 @@ final class CounterManager {
     // Store the word counter being acted upon
     private static WordCounter temporary = null;
     private static Logger log = Logger.getLogger("Word Counter Management Service");
-    // Obtaining user input
-    private static Scanner input;
     // Current state or stage
     private static ManagementStages currentStage;
 
@@ -174,9 +171,7 @@ final class CounterManager {
     // OPEN
     // Access a word counter with a given key
     private static CompletableFuture<ManagementStages> accessWordCounter() {
-        input = new Scanner(System.in);
-        System.out.println("Please enter the name for a saved WordCounter");
-        String key = input.next();
+        String key = Utilities.getStringInput("Please enter the name for a saved WordCounter");
 
         if (key.isEmpty()) {
             System.out.println("Lookup key for WordCounter is empty.");
