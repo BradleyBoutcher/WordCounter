@@ -11,8 +11,6 @@ import java.io.File;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 
 import static com.ea.async.Async.await;
@@ -25,7 +23,7 @@ import static java.util.concurrent.CompletableFuture.completedFuture;
  * C Bradley Boutcher 2019
  */
 
-public class WordCounter {
+class WordCounter {
     enum WordCounterStages {
         INPUT,
         INIT,
@@ -36,24 +34,30 @@ public class WordCounter {
         EXIT,
     }
 
-    // Aggregated words and their count
-    private HashMap<String, Integer> words;
+    // File reader for parsing current path list
+    private FileReader reader;
+
     // File paths
     private ArrayList<File> paths;
 
-    // Current stage / state of open WordCounter
-    private WordCounterStages currentStage;
+    // Identifier for this WordCounter
+    private String name = "";
 
     WordCounter(){
         System.out.println("* New Word Counter Created *");
+        this.reader = new FileReader();
     }
 
-    public void start() {
+    void start() {
         this.start(WordCounterStages.INIT);
     }
 
     private CompletableFuture<WordCounterStages> start(WordCounterStages stage) {
+        WordCounterStages currentStage;
+
         System.out.println();
+        if (name.equals("")) System.out.println("-- New WordCounter --");
+        else System.out.println("-- Word Counter: " + name + " --");
 
         switch (stage) {
             case INIT: {
@@ -73,7 +77,7 @@ public class WordCounter {
                 return start(currentStage);
             }
             case PRINT: {
-                currentStage = await(printPaths());
+                currentStage = await(printCurrentWordCount());
                 return start(currentStage);
             }
             case LIST: {
@@ -87,16 +91,14 @@ public class WordCounter {
         return completedFuture(null);
     }
 
-    private CompletableFuture<WordCounterStages> handleInput() {
-        Scanner input = new Scanner(System.in);
-        System.out.println(
-                "Please choose a command: " +
-                        "\n 1: Add a file path to this Word Reader " +
-                        "\n 2: Remove a file path from this Word Reader" +
-                        "\n 3: Print the aggregate word count of this Word Reader" +
-                        "\n 4: List file paths in this word reader" +
-                        "\n 0: Exit");
-        int answer = input.nextInt();
+    private CompletableFuture<WordCounterStages> handleInput()
+    {
+        int answer = Utilities.getIntegerInput("Please choose a command: " +
+                "\n 1: Add a file path to this Word Reader " +
+                "\n 2: Remove a file path from this Word Reader" +
+                "\n 3: Print the aggregate word count of this Word Reader" +
+                "\n 4: List file paths in this word reader" +
+                "\n 0: Exit");
 
         WordCounterStages selection;
         if      (answer == 1) selection = WordCounterStages.ADD;
@@ -112,11 +114,20 @@ public class WordCounter {
         return completedFuture(selection);
     }
 
-    public void readFile() {
-        System.out.println("Reading..");
+    public CompletableFuture<Void> processFiles()
+    {
+        try
+        {
+            this.paths.forEach((f) -> await(this.reader.processNewFile(f)));
+        } catch (Exception e) {
+            System.out.println("Unable to process file list");
+        }
+
+        return completedFuture(null);
     }
 
-    private CompletableFuture<WordCounterStages> gatherPaths() {
+    private CompletableFuture<WordCounterStages> gatherPaths()
+    {
         String answer = Utilities.getStringInput("Open file explorer? (Y / N)");
 
         // Use UI or command line
@@ -128,19 +139,30 @@ public class WordCounter {
         }
 
         // User did not select any paths - start over
-        if (this.paths == null || this.paths.size() == 0) {
+        if (this.paths == null || this.paths.size() == 0)
+        {
             return completedFuture(WordCounterStages.INIT);
         }
+
+        // Update Word Count with new Files
+        await(this.processFiles());
 
         return completedFuture(WordCounterStages.INPUT);
     }
 
-    private CompletableFuture<ArrayList<File>> desktopFileGather() {
+    /**
+     * Create a hidden JFrame to allow file selection through native desktop file explorer
+     *
+     * @return
+     */
+    private CompletableFuture<ArrayList<File>> desktopFileGather()
+    {
         ArrayList<File> chosenPaths = new ArrayList<>();
         JFrame frame;
 
         // Gather information about user displays
-        try {
+        try
+        {
             GraphicsEnvironment ge = GraphicsEnvironment
                     .getLocalGraphicsEnvironment();
             GraphicsDevice[] gc = ge.getScreenDevices();
@@ -164,18 +186,22 @@ public class WordCounter {
             return completedFuture(chosenPaths);
         }
 
-        try {
+
+        // Open file explorer
+        try
+        {
             FileDialog fd = new FileDialog(frame, "Please choose one or more files", FileDialog.LOAD);
             fd.setDirectory("C:\\");
 
             // Filter out non text files
-            fd.setFilenameFilter((dir, name) -> !name.matches(".*(\\.txt)") || name.matches("^[.]"));
+            fd.setFilenameFilter((dir, name) -> name.matches(".*(\\.txt)") || name.matches("^[.]"));
 
             fd.setMultipleMode(true);
             fd.setVisible(true);
 
             // Handle selected files
-            if (fd.getFiles() == null || fd.getFiles().length == 0) {
+            if (fd.getFiles() == null || fd.getFiles().length == 0)
+            {
                 System.out.println("You did not choose any files, please try again.");
                 return completedFuture(chosenPaths);
             }
@@ -188,16 +214,39 @@ public class WordCounter {
         return completedFuture(chosenPaths);
     }
 
-    private CompletableFuture<ArrayList<File>> commandLineFileGather() {
+    /**
+     * Retrieve a list of paths from the command line, delimited by a space
+     *
+     * @return
+     */
+    private CompletableFuture<ArrayList<File>> commandLineFileGather()
+    {
         ArrayList<File> chosenPaths = new ArrayList<>();
-        Scanner list = Utilities.getArrayInput("Please provide a list of file paths, delimited by a space.");
-        while (list.hasNext()) {
-            chosenPaths.add(new File(list.next()));
+        String[] pathArray = Utilities.getArrayInput("Please provide a list of file paths, delimited by a space.");
+
+        if (pathArray == null || pathArray.length < 1) {
+            System.out.println("No path list has been generated.");
+            return completedFuture(null);
         }
+        // Attempt to convert the path to a file and add to running list
+        for (String path: pathArray) {
+            try {
+                chosenPaths.add(new File(path));
+            } catch(Exception e) {
+                System.out.println("Invalid file name supplied, please try again.");
+            }
+        }
+
         return completedFuture(chosenPaths);
     }
 
-    private CompletableFuture<WordCounterStages> printPaths() {
+    /**
+     * Display a list of current saved paths
+     *
+     * @return
+     */
+    private CompletableFuture<WordCounterStages> printPaths()
+    {
         int count = 0;
         for (File f : paths) {
             System.out.println(count++ + ": " + f.getPath());
@@ -205,16 +254,42 @@ public class WordCounter {
         return completedFuture(WordCounterStages.INPUT);
     }
 
-    private CompletableFuture<WordCounterStages> removePath() {
-        if (this.paths.size() == 0) {
+    /**
+     * Print the current word count
+     *
+     * @return
+     */
+    private CompletableFuture<WordCounterStages> printCurrentWordCount()
+    {
+        try {
+            await(reader.print());
+        } catch (Exception e) {
+            System.out.println("There was an issue printing the word count for this Word Counter");
+        }
+        return completedFuture(WordCounterStages.INPUT);
+    }
+
+    /**
+     * Remove a file from the WordCounter list, and decrement the total count
+     * in our FileReader
+     *
+     * @return
+     */
+    private CompletableFuture<WordCounterStages> removePath()
+    {
+        if (this.paths.size() == 0)
+        {
             System.out.println("File path list is empty.");
             return completedFuture(WordCounterStages.INPUT);
         }
 
         await(printPaths());
+
         int target = Utilities.getIntegerInput("Please enter the index of the path you wish to remove");
-        try {
-            this.paths.remove(target);
+        try
+        {
+            File removed = this.paths.remove(target);
+            await(this.reader.processRemoveFile(removed));
         } catch (Exception e) {
             System.out.println("Unable to remove path. Please try again");
         }
@@ -222,7 +297,8 @@ public class WordCounter {
         String answer = Utilities.getStringInput("Would you like to remove another path?");
         if (answer.matches("[yY]")) return completedFuture(WordCounterStages.REMOVE);
         // If invalid input, give them another chance to remove instead of returning to menu
-        else if (!answer.matches("[nN]")) {
+        else if (!answer.matches("[nN]"))
+        {
             System.out.println("Invalid input, please try again.");
             start(WordCounterStages.REMOVE);
         }
@@ -230,4 +306,19 @@ public class WordCounter {
         return completedFuture(WordCounterStages.INPUT);
     }
 
+    /**
+     * Update or set the identifier for a WordCounter
+     *
+     * @param newName - New name for WordCounter
+     * @return
+     */
+    CompletableFuture<Void> setName(String newName)
+    {
+        if (newName.equals("")) {
+            System.out.println("Please enter a name with more than one character.");
+        } else {
+            name = newName;
+        }
+        return completedFuture(null);
+    }
 }

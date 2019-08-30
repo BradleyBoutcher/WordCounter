@@ -40,7 +40,7 @@ final class CounterManager {
     private CounterManager() {}
 
     static void start() {
-        start(ManagementStages.INPUT);
+        await(start(ManagementStages.INPUT));
     }
 
     /**
@@ -56,6 +56,7 @@ final class CounterManager {
 
         switch (stage) {
             case INPUT: {
+                System.out.println(" -- Main Menu --");
                 currentStage = await(handleInput());
                 return start(currentStage);
             }
@@ -64,26 +65,32 @@ final class CounterManager {
                 return start(currentStage);
             }
             case OPEN : {
+                System.out.println(" -- Open --");
                 currentStage = await(accessWordCounter());
                 return start(currentStage);
             }
             case DELETE: {
+                System.out.println(" -- Delete --");
                 currentStage = await(deleteWordCounter());
                 return start(currentStage);
             }
             case SAVE: {
+                System.out.println(" -- Save --");
                 currentStage = await(saveWordCounter());
                 return start(currentStage);
             }
             case PRINT: {
+                System.out.println(" -- Print --");
                 System.out.println("The aggregated word count for the current Word Counter is...");
                 return start(currentStage);
             }
             case LIST: {
+                System.out.println(" -- List Saved Word Counters --");
                 currentStage = await(listWordCounters());
                 return start(currentStage);
             }
             case EXIT: {
+                System.out.println(" -- Exit --");
                 System.out.println("Thank you for using Word Counter!");
                 break;
             }
@@ -149,8 +156,11 @@ final class CounterManager {
     private static CompletableFuture<ManagementStages> saveWordCounter() {
         String name = Utilities.getStringInput("Please provide a name for to save this Word Counter.");
 
+        // record name in file
+        await(temporary.setName(name));
+
         if (temporary == null) {
-            log.fine("Cannot save null WordCounter.");
+            log.fine("Cannot save non existent WordCounter.");
         }
         try {
             wordCounters.put(name, temporary);
@@ -169,19 +179,21 @@ final class CounterManager {
         String key = input.next();
 
         if (key.isEmpty()) {
-            log.fine("Lookup key for WordCounter is empty.");
+            System.out.println("Lookup key for WordCounter is empty.");
             return completedFuture(ManagementStages.OPEN);
         }
-
-        try {
-            temporary = wordCounters.get(key);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error: WordCounter could not be opened");
-            return completedFuture(ManagementStages.INPUT);
+        if (wordCounters.containsKey(key)) {
+            try {
+                temporary = wordCounters.get(key);
+            } catch (Exception e) {
+                System.out.println("Error: WordCounter could not be opened");
+                return completedFuture(ManagementStages.INPUT);
+            }
+        } else {
+            System.out.println("No such WordCounter exists with key: " + key);
         }
 
-        temporary.start();
+        if (temporary != null) temporary.start();
         return completedFuture(ManagementStages.INPUT);
     }
 
@@ -196,15 +208,17 @@ final class CounterManager {
             log.fine("Lookup key for WordCounter is empty.");
         }
 
-        try
-        {
-            wordCounters.remove(key);
-        } catch (Exception e)
-        {
-            System.out.println("Unable to delete specified Word Counter");
-            return completedFuture(ManagementStages.INPUT);
+        if (wordCounters.containsKey(key)) {
+            try {
+                wordCounters.remove(key);
+            } catch (Exception e) {
+                System.out.println("Unable to delete specified Word Counter");
+                return completedFuture(ManagementStages.INPUT);
+            }
+            System.out.println("Deleted Word Counter: " + key);
+        } else {
+            System.out.println("No such WordCounter exists with key: " + key);
         }
-        System.out.println("Deleted Word Counter: " + key);
 
         return completedFuture(ManagementStages.INPUT);
     }

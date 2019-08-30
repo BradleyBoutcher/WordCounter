@@ -11,9 +11,12 @@ final class Utilities {
     static void openConsole() {
         Console console = System.console();
 
-        try {
-            if (console == null && !GraphicsEnvironment.isHeadless()) {
-                if (os.contains("Windows")) {
+        try
+        {
+            if (console == null && !GraphicsEnvironment.isHeadless())
+            {
+                if (os.contains("Windows"))
+                {
                     String filename = Main.class.getProtectionDomain().getCodeSource().getLocation().toString().substring(6);
                     Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start", "cmd", "/k", "java -jar \"" + filename + "\""});
                 } else {
@@ -28,24 +31,47 @@ final class Utilities {
         }
     }
 
-    static String getStringInput(String message) {
-        input = new Scanner(System.in);
-        System.out.println(message);
-        System.out.print("> ");
-        return input.next();
+    static String getStringInput(String message)
+    {
+        try {
+            input = new Scanner(System.in);
+            System.out.println(message);
+            System.out.print("> ");
+            return input.next();
+        } catch (Exception e) {
+            System.out.println("Invalid input, please try again");
+        }
+
+        return "";
     }
 
-    static int getIntegerInput(String message) {
-        input = new Scanner(System.in);
-        System.out.println(message);
-        System.out.print("> ");
-        return input.nextInt();
+    static int getIntegerInput(String message)
+    {
+        try
+        {
+            input = new Scanner(System.in);
+            System.out.println(message);
+            System.out.print("> ");
+            return input.nextInt();
+        } catch (Exception e) {
+            System.out.println("Invalid input, please try again");
+        }
+
+        return -1;
     }
 
-    static Scanner getArrayInput(String message) {
-        input = new Scanner(System.in);
-        System.out.println(message);
-        System.out.print("> ");
-        return input;
+    static String[] getArrayInput(String message)
+    {
+        try
+        {
+            input = new Scanner(System.in);
+            System.out.println(message);
+            System.out.print("> ");
+            String[] items = null;
+            return input.next().split(" ");
+        } catch (Exception e) {
+            System.out.println("Unable to read path input. Please try again");
+        }
+        return null;
     }
 }
