@@ -52,7 +52,7 @@ class WordCounter {
         this.start(WordCounterStages.INIT);
     }
 
-    private CompletableFuture<WordCounterStages> start(WordCounterStages stage) {
+    CompletableFuture<WordCounterStages> start(WordCounterStages stage) {
         WordCounterStages currentStage;
 
         System.out.println();
@@ -294,7 +294,7 @@ class WordCounter {
             System.out.println("Unable to remove path. Please try again");
         }
 
-        String answer = Utilities.getStringInput("Would you like to remove another path?");
+        String answer = Utilities.getStringInput("Would you like to remove another path? (Y / N)");
         if (answer.matches("[yY]")) return completedFuture(WordCounterStages.REMOVE);
         // If invalid input, give them another chance to remove instead of returning to menu
         else if (!answer.matches("[nN]"))

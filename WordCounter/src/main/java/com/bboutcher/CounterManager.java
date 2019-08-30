@@ -98,8 +98,6 @@ final class CounterManager {
     /**
      * Method consumed by the INPUT stage
      * Initial state where the user decides what actions to take
-     *
-     * @throws Exception
      */
     private static CompletableFuture<ManagementStages> handleInput() {
 
@@ -173,6 +171,8 @@ final class CounterManager {
     private static CompletableFuture<ManagementStages> accessWordCounter() {
         String key = Utilities.getStringInput("Please enter the name for a saved WordCounter");
 
+        await(listWordCounters());
+
         if (key.isEmpty()) {
             System.out.println("Lookup key for WordCounter is empty.");
             return completedFuture(ManagementStages.OPEN);
@@ -188,7 +188,8 @@ final class CounterManager {
             System.out.println("No such WordCounter exists with key: " + key);
         }
 
-        if (temporary != null) temporary.start();
+        // Don't re-initialize
+        if (temporary != null) temporary.start(WordCounter.WordCounterStages.INPUT);
         return completedFuture(ManagementStages.INPUT);
     }
 

@@ -33,7 +33,7 @@ class FileReader {
         try
         {
             result = s
-                    .replaceAll("[^A-Za-z0-9]", " ")
+                    .replaceAll("[^A-Za-z]", "")
                     .toLowerCase();
         } catch (Throwable t) {
             t.printStackTrace();
@@ -91,12 +91,15 @@ class FileReader {
         try (Scanner words = new Scanner(f, StandardCharsets.UTF_8.name())) {
             words.forEachRemaining((word) -> {
                 word = await(stripDownInvalidCharacters(word));
-                // If the word already exists, add it
-                try {
-                    currentWordSet.putIfAbsent(word, 1);
-                    currentWordSet.computeIfPresent(word, (k, v) -> v++);
-                } catch (Exception e) {
-                    System.out.println("Unable to increment count for temporary key: " + word);
+                if (!word.equals("")) {
+                    // If the word already exists, add it
+                    try {
+                        if (this.wordCount.containsKey(word))
+                            this.wordCount.replace(word, this.wordCount.get(word) + 1);
+                        else this.wordCount.putIfAbsent(word, 1);
+                    } catch (Exception e) {
+                        System.out.println("Unable to increment count for temporary key: " + word);
+                    }
                 }
             });
         } catch (FileNotFoundException e) {
@@ -142,8 +145,8 @@ class FileReader {
     private CompletableFuture<Void> incrementTotalWordCount(String key)
     {
         try {
-            this.wordCount.putIfAbsent(key, 1);
-            this.wordCount.computeIfPresent(key, (k, v) -> v++);
+            if (this.wordCount.containsKey(key)) this.wordCount.replace(key, this.wordCount.get(key) + 1);
+            else this.wordCount.putIfAbsent(key, 1);
         } catch (Exception e) {
             System.out.println("Unable to increment count for key: " + key);
         }
@@ -162,9 +165,11 @@ class FileReader {
         try
         {
             // decrement
-            this.wordCount.computeIfPresent(key, (k, v) -> v--);
-            // remove if word no longer exists in files
-            if (this.wordCount.containsKey(key) && this.wordCount.get(key) < 1) this.wordCount.remove(key);
+            if (this.wordCount.containsKey(key)) {
+                this.wordCount.replace(key, this.wordCount.get(key) - 1);
+            } else if (this.wordCount.containsKey(key) && this.wordCount.get(key) < 1) {
+                this.wordCount.remove(key);
+            }
         } catch (Exception e) {
             System.out.println("Unable to decrement count for key: " + key);
         }
@@ -175,7 +180,7 @@ class FileReader {
     {
         try {
             System.out.println("Current Word Count: ");
-            System.out.println(this.wordCount);
+            this.wordCount.forEach( (k, v) -> System.out.println(k + ": " + v));
         } catch (Exception e) {
             System.out.println("Unable to print Word Count.");
         }
