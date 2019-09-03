@@ -119,9 +119,9 @@ class WordCounter {
     {
         try
         {
-            this.paths.forEach((f) -> {
+            this.paths.forEach((f) ->
+            {
                 HashMap<String, Integer> temp = await(this.reader.processNewFile(f));
-                await(this.reader.mergeWordCounts(temp, false));
             });
         } catch (Exception e) {
             System.out.println("Unable to process file list");

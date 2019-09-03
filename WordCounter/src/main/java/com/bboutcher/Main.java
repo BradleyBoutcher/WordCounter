@@ -2,8 +2,6 @@ package com.bboutcher;
 
 import com.ea.async.Async;
 
-import java.util.Arrays;
-
 public class Main {
 
     public static void main(String[] args) {

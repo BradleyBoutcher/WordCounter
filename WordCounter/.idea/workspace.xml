@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51d0dd1e-6920-4dec-8ae5-8d973a936dd5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderBaseTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/bboutcher/HeadlessFileReaderTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bboutcher/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bboutcher/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounterManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounterManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -24,91 +19,86 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.42937323">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="193">
-                  <caret line="102" column="56" lean-forward="true" selection-start-line="102" selection-start-column="56" selection-end-line="102" selection-end-column="56" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/run.sh">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
-                  <caret line="24" column="4" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="231">
-                  <caret line="127" column="9" lean-forward="true" selection-start-line="127" selection-start-column="9" selection-end-line="127" selection-end-column="9" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="364">
-                  <caret line="55" column="7" lean-forward="true" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/Main.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="18" column="83" selection-start-line="18" selection-start-column="83" selection-end-line="18" selection-end-column="83" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="336">
-                  <caret line="41" column="71" selection-start-line="41" selection-start-column="71" selection-end-line="41" selection-end-column="71" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/run.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="4" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="289" column="38" selection-start-line="289" selection-start-column="38" selection-end-line="289" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="29">
+              <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderBaseTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="73">
+              <caret line="67" column="55" selection-start-line="67" selection-start-column="55" selection-end-line="67" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/bboutcher/HeadlessFileReaderTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -133,11 +123,13 @@
         <option value="$PROJECT_DIR$/src/main/resources/input-file-01" />
         <option value="$PROJECT_DIR$/src/main/resources/input-file-02" />
         <option value="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounterManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderTest.java" />
         <option value="$PROJECT_DIR$/run.sh" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bboutcher/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/bboutcher/HeadlessFileReaderTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderBaseTest.java" />
       </list>
     </option>
   </component>
@@ -170,6 +162,7 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="-1" />
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="1027" />
@@ -252,7 +245,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567546085673" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567548970458" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -289,7 +282,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.FileReaderTest.processNewFile">
+  <component name="RunManager" selected="Remote.debug">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bboutcher.Main" />
       <module name="wordcounter" />
@@ -330,6 +323,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FileReaderTest.processRemoveFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wordcounter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bboutcher.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bboutcher" />
+      <option name="MAIN_CLASS_NAME" value="com.bboutcher.FileReaderTest" />
+      <option name="METHOD_NAME" value="processRemoveFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HeadlessFileReaderTest.convertPathsToFiles" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="wordcounter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bboutcher.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bboutcher" />
+      <option name="MAIN_CLASS_NAME" value="com.bboutcher.HeadlessFileReaderTest" />
+      <option name="METHOD_NAME" value="convertPathsToFiles" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="debug" type="Remote">
       <module name="wordcounter" />
       <option name="USE_SOCKET_TRANSPORT" value="true" />
@@ -349,10 +374,14 @@
       <item itemvalue="Remote.debug" />
       <item itemvalue="JUnit.FileReaderTest.convertPathsToFiles" />
       <item itemvalue="JUnit.FileReaderTest.processNewFile" />
+      <item itemvalue="JUnit.FileReaderTest.processRemoveFile" />
+      <item itemvalue="JUnit.HeadlessFileReaderTest.convertPathsToFiles" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.HeadlessFileReaderTest.convertPathsToFiles" />
         <item itemvalue="JUnit.FileReaderTest.processNewFile" />
+        <item itemvalue="JUnit.FileReaderTest.processRemoveFile" />
         <item itemvalue="JUnit.FileReaderTest.convertPathsToFiles" />
       </list>
     </recent_temporary>
@@ -368,44 +397,44 @@
       <option name="presentableId" value="Default" />
       <updated>1567100806082</updated>
       <workItem from="1567100809180" duration="8937000" />
-      <workItem from="1567178233861" duration="27763000" />
+      <workItem from="1567178233861" duration="30240000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="FileReaderTest_processNewFile - 2019.09.03 at 16h 50m 55s.xml">
-      <configuration name="FileReaderTest.processNewFile" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FileReaderTest_processNewFile - 2019.09.03 at 16h 52m 12s.xml">
-      <configuration name="FileReaderTest.processNewFile" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FileReaderTest_processNewFile - 2019.09.03 at 16h 53m 01s.xml">
-      <configuration name="FileReaderTest.processNewFile" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FileReaderTest_processNewFile - 2019.09.03 at 16h 53m 34s.xml">
-      <configuration name="FileReaderTest.processNewFile" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FileReaderTest_processNewFile - 2019.09.03 at 16h 55m 53s.xml">
-      <configuration name="FileReaderTest.processNewFile" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FileReaderTest_processNewFile - 2019.09.03 at 16h 56m 32s.xml">
-      <configuration name="FileReaderTest.processNewFile" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FileReaderTest_processNewFile - 2019.09.03 at 16h 57m 04s.xml">
-      <configuration name="FileReaderTest.processNewFile" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FileReaderTest_convertPathsToFiles - 2019.09.03 at 16h 57m 56s.xml">
-      <configuration name="FileReaderTest.convertPathsToFiles" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="FileReaderTest_convertPathsToFiles - 2019.09.03 at 16h 58m 14s.xml">
       <configuration name="FileReaderTest.convertPathsToFiles" configurationId="JUnit" />
     </history-entry>
     <history-entry file="FileReaderTest_processNewFile - 2019.09.03 at 17h 04m 25s.xml">
       <configuration name="FileReaderTest.processNewFile" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="FileReaderTest_processRemoveFile - 2019.09.03 at 17h 41m 23s.xml">
+      <configuration name="FileReaderTest.processRemoveFile" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FileReaderTest_processRemoveFile - 2019.09.03 at 17h 41m 55s.xml">
+      <configuration name="FileReaderTest.processRemoveFile" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FileReaderTest_processRemoveFile - 2019.09.03 at 17h 42m 52s.xml">
+      <configuration name="FileReaderTest.processRemoveFile" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FileReaderTest_processRemoveFile - 2019.09.03 at 17h 43m 32s.xml">
+      <configuration name="FileReaderTest.processRemoveFile" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FileReaderTest_processRemoveFile - 2019.09.03 at 17h 45m 28s.xml">
+      <configuration name="FileReaderTest.processRemoveFile" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FileReaderTest_processRemoveFile - 2019.09.03 at 17h 46m 08s.xml">
+      <configuration name="FileReaderTest.processRemoveFile" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FileReaderTest_processNewFile - 2019.09.03 at 18h 12m 11s.xml">
+      <configuration name="FileReaderTest.processNewFile" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HeadlessFileReaderTest_convertPathsToFiles - 2019.09.03 at 18h 15m 18s.xml">
+      <configuration name="HeadlessFileReaderTest.convertPathsToFiles" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36700000" />
+    <option name="totallyTimeSpent" value="39177000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -417,7 +446,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
+    <frame x="-1" y="23" width="1680" height="1027" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14285715" />
@@ -429,16 +458,16 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5714286" weight="0.32941177" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.56959707" visible="true" weight="0.32941177" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.7332112" weight="0.2973262" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49946752" weight="0.3299539" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.6788767" visible="true" weight="0.32941177" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.6788767" weight="0.32941177" />
       <window_info anchor="bottom" id="CheckStyle" order="9" sideWeight="0.49946752" weight="0.3299539" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.32112333" side_tool="true" visible="true" weight="0.32941177" />
-      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.43040293" side_tool="true" visible="true" weight="0.32941177" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.498779" weight="0.32941177" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49946752" weight="0.3299539" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -460,19 +489,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java</url>
-          <line>108</line>
-          <properties />
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java</url>
-          <line>199</line>
+          <line>200</line>
           <properties />
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java</url>
-          <line>200</line>
+          <line>201</line>
           <properties />
           <option name="timeStamp" value="28" />
         </line-breakpoint>
@@ -749,18 +772,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="127" column="9" lean-forward="true" selection-start-line="127" selection-start-column="9" selection-end-line="127" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="55" column="7" lean-forward="true" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
+        <state relative-caret-position="311">
+          <caret line="289" column="38" selection-start-line="289" selection-start-column="38" selection-end-line="289" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -769,21 +782,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="83" selection-start-line="18" selection-start-column="83" selection-end-line="18" selection-end-column="83" />
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="41" column="71" selection-start-line="41" selection-start-column="71" selection-end-line="41" selection-end-column="71" />
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderBaseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="67" column="55" selection-start-line="67" selection-start-column="55" selection-end-line="67" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/bboutcher/HeadlessFileReaderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>

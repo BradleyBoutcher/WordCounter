@@ -21,7 +21,7 @@ import static java.util.concurrent.CompletableFuture.completedFuture;
 class FileReader {
 
     // Aggregated words and their respective count
-    private HashMap<String, Integer> wordCount = new HashMap<>();
+    protected HashMap<String, Integer> wordCount = new HashMap<>();
 
     /**
      * Headless implementation of the file reader.
@@ -98,7 +98,7 @@ class FileReader {
      * Retrieve the word count for a single file and merge it into the total
      *
      * @param f
-     * @return
+     * @return word count of single file
      */
     CompletableFuture<HashMap<String, Integer>> processNewFile(File f)
     {
@@ -117,18 +117,19 @@ class FileReader {
     /**
      * Retrieve the word count for a single file and remove it from the total
      * @param f
-     * @return
+     * @return Current wordcount, post-removal
      */
-    CompletableFuture<Void> processRemoveFile(File f)
+    CompletableFuture<HashMap<String, Integer>> processRemoveFile(File f)
     {
+        HashMap<String, Integer> temp;
         try {
-            HashMap<String, Integer> temp = await(this.getWordCountFromFile(f));
+            temp = await(this.getWordCountFromFile(f));
             await(this.mergeWordCounts(temp, true));
         } catch (Exception e) {
             System.out.println("Unable to process the removal from word count of file: " + f.getPath());
         }
 
-        return completedFuture(null);
+        return completedFuture(this.wordCount);
     }
 
     /**
@@ -172,7 +173,7 @@ class FileReader {
      * @param @Nullable decrement - optional flag to remove the given file from the word count
      * @return
      */
-    CompletableFuture<Void> mergeWordCounts(HashMap<String, Integer> newWordCount, Boolean decrement)
+    private CompletableFuture<Void> mergeWordCounts(HashMap<String, Integer> newWordCount, Boolean decrement)
     {
         try {
             newWordCount
@@ -220,7 +221,8 @@ class FileReader {
             // decrement
             if (this.wordCount.containsKey(key)) {
                 this.wordCount.replace(key, this.wordCount.get(key) - value);
-            } else if (this.wordCount.containsKey(key) && this.wordCount.get(key) < 1) {
+            }
+            if (this.wordCount.containsKey(key) && this.wordCount.get(key) < 1) {
                 this.wordCount.remove(key);
             }
         } catch (Exception e) {
