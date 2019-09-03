@@ -2,11 +2,9 @@ package com.bboutcher;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 
@@ -15,15 +13,19 @@ import static java.util.concurrent.CompletableFuture.completedFuture;
 
 /**
  * A utility class designed to validate and read file paths,
- * and their correlating file
+ * and their correlating file. It then stores their corresponding word count.
  *
  * C Bradley Boutcher 2019
  */
 class FileReader {
 
     // Aggregated words and their respective count
-    protected HashMap<String, Integer> wordCount = new HashMap<>();
+    private HashMap<String, Integer> wordCount = new HashMap<>();
 
+    /**
+     * Headless implementation of the file reader.
+     * Performs file parsing and printing only.
+     */
     public static final class HeadlessFileReader extends FileReader {
         ArrayList<File> files;
 
@@ -71,7 +73,7 @@ class FileReader {
     }
 
     /**
-     * Return a list of Files from an array of paths
+     * Return a list of Files from an array of strings
      *
      * @param paths
      * @return
@@ -230,7 +232,7 @@ class FileReader {
     {
         try {
             System.out.println("Current Word Count: ");
-            this.wordCount.forEach( (k, v) -> System.out.println(k + ": " + v));
+            this.wordCount.forEach( (k, v) -> System.out.println(k + ": " + v + ","));
         } catch (Exception e) {
             System.out.println("Unable to print Word Count.");
         }

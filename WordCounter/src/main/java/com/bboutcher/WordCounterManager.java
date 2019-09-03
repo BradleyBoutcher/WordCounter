@@ -12,7 +12,7 @@ import static java.util.concurrent.CompletableFuture.completedFuture;
  * instances of WordCounter objects
  */
 
-final class CounterManager {
+final class WordCounterManager {
 
     enum ManagementStages {
         INPUT,
@@ -29,12 +29,12 @@ final class CounterManager {
     private static HashMap<String, WordCounter> wordCounters = new HashMap<>();
     // Store the word counter being acted upon
     private static WordCounter temporary = null;
-    private static Logger log = Logger.getLogger("Word Counter Management Service");
+
     // Current state or stage
     private static ManagementStages currentStage;
 
     // Avoid instantiation, effectively a static class
-    private CounterManager() {}
+    private WordCounterManager() {}
 
     static void start() {
         await(start(ManagementStages.INPUT));
@@ -140,7 +140,8 @@ final class CounterManager {
         } else if (answer.matches("[nN]")) {
             System.out.println("Current Word Counter will not be saved.");
         } else {
-            retry(ManagementStages.NEW);
+            System.out.println("Invalid input, proceeding to save...");
+            saveWordCounter();
         }
 
         return completedFuture(ManagementStages.INPUT);
@@ -155,8 +156,10 @@ final class CounterManager {
         await(temporary.setName(name));
 
         if (temporary == null) {
-            log.fine("Cannot save non existent WordCounter.");
+            System.out.println("Cannot save non existent WordCounter.");
+            return completedFuture(ManagementStages.INPUT);
         }
+
         try {
             wordCounters.put(name, temporary);
         } catch (Exception e) {
@@ -177,6 +180,7 @@ final class CounterManager {
             System.out.println("Lookup key for WordCounter is empty.");
             return completedFuture(ManagementStages.OPEN);
         }
+
         if (wordCounters.containsKey(key)) {
             try {
                 temporary = wordCounters.get(key);
@@ -199,9 +203,9 @@ final class CounterManager {
     {
         String key = Utilities.getStringInput("Please enter the name for a saved WordCounter you would like to delete.");
 
-        if (key.isEmpty())
-        {
-            log.fine("Lookup key for WordCounter is empty.");
+        if (key.isEmpty()) {
+            System.out.println("Lookup key for WordCounter is empty.");
+            return completedFuture(ManagementStages.DELETE);
         }
 
         if (wordCounters.containsKey(key)) {
@@ -217,12 +221,6 @@ final class CounterManager {
         }
 
         return completedFuture(ManagementStages.INPUT);
-    }
-
-    private static void retry(ManagementStages stage)
-    {
-        System.out.println("Invalid input, please try again.");
-        start(stage);
     }
 
     private static CompletableFuture<ManagementStages> listWordCounters()

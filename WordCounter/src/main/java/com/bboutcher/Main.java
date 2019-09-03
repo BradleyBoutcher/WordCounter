@@ -10,7 +10,7 @@ public class Main {
         if (args.length < 1)            // No arguments - start in interactive mode
         {
             Utilities.openConsole();    // Attempt to open Console if not already open
-            CounterManager.start();
+            WordCounterManager.start();
         }
         else
         {                               // Arguments given - start in headless mode
