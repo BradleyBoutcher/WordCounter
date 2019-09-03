@@ -16,7 +16,6 @@ or manually specify the JAR:
 > java -jar target/wordcounter-1.0-SNAPSHOT.jar
 
 To run in non-interactive mode, use: 
-> run.sh start <File Paths...>
 > java -jar target/wordcounter-1.0-SNAPSHOT.jar <File Paths...>
 
 ### Implementation
