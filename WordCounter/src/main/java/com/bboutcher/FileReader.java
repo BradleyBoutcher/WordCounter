@@ -2,8 +2,11 @@ package com.bboutcher;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 
@@ -19,7 +22,32 @@ import static java.util.concurrent.CompletableFuture.completedFuture;
 class FileReader {
 
     // Aggregated words and their respective count
-    private HashMap<String, Integer> wordCount = new HashMap<>();
+    protected HashMap<String, Integer> wordCount = new HashMap<>();
+
+    public static final class HeadlessFileReader extends FileReader {
+        ArrayList<File> files;
+
+        HeadlessFileReader(String[] args) {
+            super();
+            this.files = await(convertPathsToFiles(args));
+        }
+
+        @Override
+        public CompletableFuture<Void> print() {
+
+            // Retrieve word count
+            try {
+                this.files.forEach((f) -> await(this.processNewFile(f)));
+            } catch (Exception e) {
+                System.out.println("Unable to process file list");
+            }
+
+            // Call parent print method
+            await(super.print());
+
+            return completedFuture(null);
+        }
+    }
 
     /**
      * Remove invalid characters from the word provided
@@ -43,12 +71,34 @@ class FileReader {
     }
 
     /**
+     * Return a list of Files from an array of paths
+     *
+     * @param paths
+     * @return
+     */
+    CompletableFuture<ArrayList<File>> convertPathsToFiles(String[] paths)
+    {
+        ArrayList<File> files = new ArrayList<>();
+
+        // Attempt to convert the path to a file and add to running list
+        for (String path: paths) {
+            try {
+                files.add(new File(path));
+            } catch(Exception e) {
+                System.out.println("Invalid file name supplied: " + path + ", please try again.");
+            }
+        }
+
+        return completedFuture(files);
+    }
+
+    /**
      * Retrieve the word count for a single file and merge it into the total
      *
      * @param f
      * @return
      */
-    public CompletableFuture<Void> processNewFile(File f)
+    CompletableFuture<Void> processNewFile(File f)
     {
         try
         {
@@ -66,7 +116,7 @@ class FileReader {
      * @param f
      * @return
      */
-    public CompletableFuture<Void> processRemoveFile(File f)
+    CompletableFuture<Void> processRemoveFile(File f)
     {
         try {
             HashMap<String, Integer> temp = await(this.getWordCountFromFile(f));
@@ -84,7 +134,7 @@ class FileReader {
      * @param f - A text file, only words with standard letters or numbers will be read
      * @return
      */
-    private CompletableFuture<HashMap<String, Integer>> getWordCountFromFile(File f)
+    protected CompletableFuture<HashMap<String, Integer>> getWordCountFromFile(File f)
     {
         HashMap<String, Integer> currentWordSet = new HashMap<>();
 

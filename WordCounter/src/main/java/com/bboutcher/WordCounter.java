@@ -229,13 +229,7 @@ class WordCounter {
             return completedFuture(null);
         }
         // Attempt to convert the path to a file and add to running list
-        for (String path: pathArray) {
-            try {
-                chosenPaths.add(new File(path));
-            } catch(Exception e) {
-                System.out.println("Invalid file name supplied, please try again.");
-            }
-        }
+        chosenPaths = await(this.reader.convertPathsToFiles(pathArray));
 
         return completedFuture(chosenPaths);
     }
