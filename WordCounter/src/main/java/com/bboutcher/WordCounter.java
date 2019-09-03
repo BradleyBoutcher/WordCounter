@@ -11,6 +11,7 @@ import java.io.File;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
 import static com.ea.async.Async.await;
@@ -118,7 +119,10 @@ class WordCounter {
     {
         try
         {
-            this.paths.forEach((f) -> await(this.reader.processNewFile(f)));
+            this.paths.forEach((f) -> {
+                HashMap<String, Integer> temp = await(this.reader.processNewFile(f));
+                await(this.reader.mergeWordCounts(temp, false));
+            });
         } catch (Exception e) {
             System.out.println("Unable to process file list");
         }
@@ -253,7 +257,7 @@ class WordCounter {
      *
      * @return
      */
-    private CompletableFuture<WordCounterStages> printCurrentWordCount()
+    public CompletableFuture<WordCounterStages> printCurrentWordCount()
     {
         try {
             await(reader.print());

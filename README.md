@@ -55,6 +55,7 @@ When using the interface, the user can add additional paths or remove paths, whi
 ### Debugging
 Run the included bash file, `run.sh` with the parameter `debug` like so:
 > run.sh debug
+
 This will begin the process on port 1044, which you can attach to in your IDE of choice.
 
 If you're curious, the word count for this README is:

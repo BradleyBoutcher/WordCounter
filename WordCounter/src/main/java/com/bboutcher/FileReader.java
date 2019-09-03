@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
@@ -36,7 +37,6 @@ class FileReader {
 
         @Override
         public CompletableFuture<Void> print() {
-
             // Retrieve word count
             try {
                 this.files.forEach((f) -> await(this.processNewFile(f)));
@@ -57,7 +57,7 @@ class FileReader {
      * @param s
      * @return
      */
-    private static CompletableFuture<String> stripDownInvalidCharacters(String s)
+    static CompletableFuture<String> stripDownInvalidCharacters(String s)
     {
         String result;
         try
@@ -100,17 +100,18 @@ class FileReader {
      * @param f
      * @return
      */
-    CompletableFuture<Void> processNewFile(File f)
+    CompletableFuture<HashMap<String, Integer>> processNewFile(File f)
     {
+        HashMap<String, Integer> temp = new HashMap<>();
         try
         {
-            HashMap<String, Integer> temp = await(this.getWordCountFromFile(f));
-            await(this.mergeWordCounts(temp, false));
+            temp = await(this.getWordCountFromFile(f));
+            await(mergeWordCounts(temp, false));
         } catch (Exception e) {
             System.out.println("Unable to process file: " + f.getPath());
         }
 
-        return completedFuture(null);
+        return completedFuture(temp);
     }
 
     /**
@@ -136,7 +137,7 @@ class FileReader {
      * @param f - A text file, only words with standard letters or numbers will be read
      * @return
      */
-    protected CompletableFuture<HashMap<String, Integer>> getWordCountFromFile(File f)
+    CompletableFuture<HashMap<String, Integer>> getWordCountFromFile(File f)
     {
         HashMap<String, Integer> currentWordSet = new HashMap<>();
 
@@ -146,9 +147,9 @@ class FileReader {
                 if (!word.equals("")) {
                     // If the word already exists, add it
                     try {
-                        if (this.wordCount.containsKey(word))
-                            this.wordCount.replace(word, this.wordCount.get(word) + 1);
-                        else this.wordCount.putIfAbsent(word, 1);
+                        if (currentWordSet.containsKey(word))
+                            currentWordSet.replace(word, currentWordSet.get(word) + 1);
+                        else currentWordSet.putIfAbsent(word, 1);
                     } catch (Exception e) {
                         System.out.println("Unable to increment count for temporary key: " + word);
                     }
@@ -171,15 +172,15 @@ class FileReader {
      * @param @Nullable decrement - optional flag to remove the given file from the word count
      * @return
      */
-    private CompletableFuture<Void> mergeWordCounts(HashMap<String, Integer> newWordCount, Boolean decrement)
+    CompletableFuture<Void> mergeWordCounts(HashMap<String, Integer> newWordCount, Boolean decrement)
     {
         try {
             newWordCount
                     .entrySet()
                     .iterator()
                     .forEachRemaining((e) -> {
-                            if (decrement) await(decrementTotal(e.getKey()));
-                            else await(incrementTotalWordCount(e.getKey()));
+                            if (decrement) await(decrementTotal(e.getKey(), e.getValue()));
+                            else await(incrementTotalWordCount(e.getKey(), e.getValue()));
                     });
         } catch (Exception e) {
             System.out.println("Unable to update total word count");
@@ -194,11 +195,11 @@ class FileReader {
      * @param key
      * @return
      */
-    private CompletableFuture<Void> incrementTotalWordCount(String key)
+    private CompletableFuture<Void> incrementTotalWordCount(String key, Integer value)
     {
         try {
-            if (this.wordCount.containsKey(key)) this.wordCount.replace(key, this.wordCount.get(key) + 1);
-            else this.wordCount.putIfAbsent(key, 1);
+            if (this.wordCount.containsKey(key)) this.wordCount.replace(key, this.wordCount.get(key) + value);
+            else this.wordCount.put(key, value);
         } catch (Exception e) {
             System.out.println("Unable to increment count for key: " + key);
         }
@@ -212,13 +213,13 @@ class FileReader {
      * @param key
      * @return
      */
-    private CompletableFuture<Void> decrementTotal(String key)
+    private CompletableFuture<Void> decrementTotal(String key, Integer value)
     {
         try
         {
             // decrement
             if (this.wordCount.containsKey(key)) {
-                this.wordCount.replace(key, this.wordCount.get(key) - 1);
+                this.wordCount.replace(key, this.wordCount.get(key) - value);
             } else if (this.wordCount.containsKey(key) && this.wordCount.get(key) < 1) {
                 this.wordCount.remove(key);
             }

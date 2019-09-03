@@ -2,6 +2,8 @@ package com.bboutcher;
 
 import com.ea.async.Async;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -15,7 +17,6 @@ public class Main {
         else
         {                               // Arguments given - start in headless mode
             System.out.println("Parameters detected, running in headless mode...");
-            System.out.println(args[0]);
             FileReader.HeadlessFileReader reader = new FileReader.HeadlessFileReader(args);
             reader.print();
         }

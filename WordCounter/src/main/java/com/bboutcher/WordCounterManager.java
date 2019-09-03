@@ -79,6 +79,7 @@ final class WordCounterManager {
             case PRINT: {
                 System.out.println(" -- Print --");
                 System.out.println("The aggregated word count for the current Word Counter is...");
+                currentStage = await(printWordCounter());
                 return start(currentStage);
             }
             case LIST: {
@@ -232,6 +233,12 @@ final class WordCounterManager {
 
         System.out.print("Saved Word Counters: ");
         wordCounters.forEach((k, w) -> System.out.print(k));
+
+        return completedFuture(ManagementStages.INPUT);
+    }
+
+    private static  CompletableFuture<ManagementStages> printWordCounter() {
+        if (temporary != null) await(temporary.printCurrentWordCount());
 
         return completedFuture(ManagementStages.INPUT);
     }
