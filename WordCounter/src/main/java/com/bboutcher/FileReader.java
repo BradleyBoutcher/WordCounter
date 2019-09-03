@@ -85,7 +85,7 @@ class FileReader {
             try {
                 files.add(new File(path));
             } catch(Exception e) {
-                System.out.println("Invalid file name supplied: " + path + ", please try again.");
+                System.out.println("Invalid file name supplied: " + path + ", ignoring...");
             }
         }
 

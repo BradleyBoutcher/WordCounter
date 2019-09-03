@@ -3,7 +3,7 @@
 case $1 in
   start)
     java -jar target/wordcounter-1.0-SNAPSHOT.jar \
-        "$@"
+        "${@:2}"
   ;;
 
   debug)
@@ -11,18 +11,23 @@ case $1 in
         -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044 \
         -Dfile.encoding=UTF-8 \
         -jar ./target/wordcounter-1.0-SNAPSHOT.jar
-        "$@"
+        "${@:2}"
   ;;
 
   help)
-    echo "Option must be one of the following"
-    echo "  headless"
-    echo "  debug"
-    echo "  help"
+    echo "Command must be one of the following: "
+    echo "  Start"
+    echo "  Headless"
+    echo "  Debug"
+    echo "  Help"
     ;;
 
   *)
-    echo -e parameter must be one of "headless, debug, or help"
+    echo "Command must be one of the following: "
+    echo "  Start"
+    echo "  Headless"
+    echo "  Debug"
+    echo "  Help"
     exit 1
     ;;
 
