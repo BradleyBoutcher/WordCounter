@@ -24,7 +24,7 @@ class FileReader {
 
     /**
      * Headless implementation of the file reader.
-     * Performs file parsing and printing only.
+     *
      */
     public static final class HeadlessFileReader extends FileReader {
         ArrayList<File> files;

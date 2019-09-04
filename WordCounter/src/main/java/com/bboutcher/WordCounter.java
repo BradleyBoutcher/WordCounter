@@ -103,6 +103,7 @@ class WordCounter {
                 "\n 1: Add a file path to this Word Reader " +
                 "\n 2: Remove a file path from this Word Reader" +
                 "\n 3: Print the aggregate word count of this Word Reader" +
+                "\n 3: Look up the count of a single word" +
                 "\n 4: List file paths in this word reader" +
                 "\n 0: Exit");
 
@@ -264,7 +265,7 @@ class WordCounter {
         Integer value = 0;
 
         try {
-            value = this.reader.wordCount.get(key);
+            value = this.reader.wordCount.getOrDefault(key, 0);
         } catch (Exception e) {
             System.out.println("Invalid or non existent key entered, please try again.");
             return completedFuture(WordCounterStages.LOOKUP);
