@@ -30,6 +30,7 @@ class WordCounter {
         INIT,
         ADD,
         REMOVE,
+        LOOKUP,
         PRINT,
         LIST,
         EXIT,
@@ -75,6 +76,10 @@ class WordCounter {
             }
             case REMOVE: {
                 currentStage = await(removePath());
+                return start(currentStage);
+            }
+            case LOOKUP: {
+                currentStage = await(lookup());
                 return start(currentStage);
             }
             case PRINT: {
@@ -225,7 +230,7 @@ class WordCounter {
      */
     private CompletableFuture<ArrayList<File>> commandLineFileGather()
     {
-        ArrayList<File> chosenPaths = new ArrayList<>();
+        ArrayList<File> chosenPaths;
         String[] pathArray = Utilities.getArrayInput("Please provide a list of file paths, delimited by a space.");
 
         if (pathArray == null || pathArray.length < 1) {
@@ -236,6 +241,38 @@ class WordCounter {
         chosenPaths = await(this.reader.convertPathsToFiles(pathArray));
 
         return completedFuture(chosenPaths);
+    }
+
+    /**
+     * Lookup the count for a specific word
+     */
+    private CompletableFuture<WordCounterStages> lookup() {
+        String key = Utilities.getStringInput("Please enter the key to search for.");
+
+        if (key.equals("")) {
+            System.out.println("No key entered, exiting...");
+            return completedFuture(WordCounterStages.INPUT);
+        }
+
+        Integer value = 0;
+
+        try {
+            value = this.reader.wordCount.get(key);
+        } catch (Exception e) {
+            System.out.println("Invalid or non existent key entered, please try again.");
+            return completedFuture(WordCounterStages.LOOKUP);
+        }
+
+        System.out.println(key + ": " + value);
+
+        String answer = Utilities.getStringInput("Would you like to lookup another word? (Y / N)");
+        if (answer.matches("[yY]")) return completedFuture(WordCounterStages.LOOKUP);
+            // If invalid input, give them another chance to remove instead of returning to menu
+        else if (!answer.matches("[nN]"))
+        {
+            System.out.println("Invalid input, exiting...");
+        }
+        return completedFuture(WordCounterStages.INPUT);
     }
 
     /**
@@ -298,7 +335,7 @@ class WordCounter {
         else if (!answer.matches("[nN]"))
         {
             System.out.println("Invalid input, please try again.");
-            start(WordCounterStages.REMOVE);
+            return completedFuture(WordCounterStages.REMOVE);
         }
 
         return completedFuture(WordCounterStages.INPUT);

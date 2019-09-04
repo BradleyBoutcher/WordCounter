@@ -17,7 +17,6 @@ case $1 in
   help)
     echo "Command must be one of the following: "
     echo "  Start"
-    echo "  Headless"
     echo "  Debug"
     echo "  Help"
     ;;
@@ -25,7 +24,6 @@ case $1 in
   *)
     echo "Command must be one of the following: "
     echo "  Start"
-    echo "  Headless"
     echo "  Debug"
     echo "  Help"
     exit 1

@@ -2,7 +2,6 @@ package com.bboutcher;
 
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
-import java.util.logging.Logger;
 
 import static com.ea.async.Async.await;
 import static java.util.concurrent.CompletableFuture.completedFuture;
