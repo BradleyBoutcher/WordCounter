@@ -150,15 +150,16 @@ final class WordCounterManager {
     // SAVE
     // Store a given word counter with an associated key
     private static CompletableFuture<ManagementStages> saveWordCounter() {
+        if (temporary == null) {
+            System.out.println("Cannot save non existent WordCounter.");
+            return completedFuture(ManagementStages.INPUT);
+        }
+
         String name = Utilities.getStringInput("Please provide a name for to save this Word Counter.");
 
         // record name in file
         await(temporary.setName(name));
 
-        if (temporary == null) {
-            System.out.println("Cannot save non existent WordCounter.");
-            return completedFuture(ManagementStages.INPUT);
-        }
 
         try {
             wordCounters.put(name, temporary);
@@ -226,7 +227,7 @@ final class WordCounterManager {
     private static CompletableFuture<ManagementStages> listWordCounters()
     {
         if (wordCounters.size() == 0) {
-            System.out.print("No WordCounters saved.");
+            System.out.println("No WordCounters saved.");
             return completedFuture(ManagementStages.INPUT);
         }
 

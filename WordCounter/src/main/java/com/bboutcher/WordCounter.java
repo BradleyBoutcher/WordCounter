@@ -111,6 +111,7 @@ class WordCounter {
         else if (answer == 2) selection = WordCounterStages.REMOVE;
         else if (answer == 3) selection = WordCounterStages.PRINT;
         else if (answer == 4) selection = WordCounterStages.LIST;
+        else if (answer == 5) selection = WordCounterStages.LOOKUP;
         else if (answer == 0) selection = WordCounterStages.EXIT;
         else {
             System.out.println("Invalid input, please try again.");
@@ -126,7 +127,7 @@ class WordCounter {
         {
             this.paths.forEach((f) ->
             {
-                HashMap<String, Integer> temp = await(this.reader.processNewFile(f));
+                await(this.reader.processNewFile(f));
             });
         } catch (Exception e) {
             System.out.println("Unable to process file list");
@@ -151,6 +152,12 @@ class WordCounter {
         if (this.paths == null || this.paths.size() == 0)
         {
             return completedFuture(WordCounterStages.INIT);
+        }
+
+        for (File f : this.paths) {
+            System.out.println();
+            System.out.println("Added paths: ");
+            System.out.println(f.getAbsolutePath());
         }
 
         // Update Word Count with new Files

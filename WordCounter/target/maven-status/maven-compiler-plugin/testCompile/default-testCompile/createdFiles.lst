@@ -1,1 +1,3 @@
 com/bboutcher/FileReaderTest.class
+com/bboutcher/FileReaderBaseTest.class
+com/bboutcher/HeadlessFileReaderTest.class

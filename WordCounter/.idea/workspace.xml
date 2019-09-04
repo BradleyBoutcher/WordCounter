@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51d0dd1e-6920-4dec-8ae5-8d973a936dd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounterManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounterManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.bboutcher.FileReaderTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.bboutcher.FileReaderTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.bboutcher.HeadlessFileReaderTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.bboutcher.HeadlessFileReaderTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.bboutcher.FileReaderTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.bboutcher.FileReaderTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.bboutcher.HeadlessFileReaderTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.bboutcher.HeadlessFileReaderTest.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -20,16 +25,16 @@
         <entry file="file://$PROJECT_DIR$/run.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="337" column="60" selection-start-line="337" selection-start-column="60" selection-end-line="337" selection-end-column="60" />
+            <state relative-caret-position="921">
+              <caret line="152" column="9" lean-forward="true" selection-start-line="152" selection-start-column="9" selection-end-line="152" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1140#1141#0" expanded="true" />
@@ -42,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="145" column="63" lean-forward="true" selection-start-line="145" selection-start-column="63" selection-end-line="145" selection-end-column="63" />
+            <state relative-caret-position="193">
+              <caret line="101" column="48" selection-start-line="101" selection-start-column="48" selection-end-line="101" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,11 +56,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounterManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="46" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+            <state relative-caret-position="124">
+              <caret line="151" column="74" selection-start-line="151" selection-start-column="74" selection-end-line="151" selection-end-column="74" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,9 +108,9 @@
         <option value="$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/bboutcher/FileReaderBaseTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounterManager.java" />
         <option value="$PROJECT_DIR$/run.sh" />
         <option value="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounterManager.java" />
       </list>
     </option>
   </component>
@@ -168,7 +176,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567564348338" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567564815971" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -320,7 +328,7 @@
       <option name="presentableId" value="Default" />
       <updated>1567100806082</updated>
       <workItem from="1567100809180" duration="8937000" />
-      <workItem from="1567178233861" duration="32300000" />
+      <workItem from="1567178233861" duration="32757000" />
     </task>
     <servers />
   </component>
@@ -357,7 +365,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41237000" />
+    <option name="totallyTimeSpent" value="41694000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -381,22 +389,22 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5689866" weight="0.32941177" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.56837606" weight="0.32941177" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.72893775" weight="0.2973262" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.498779" weight="0.32941177" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.56105006" visible="true" weight="0.32941177" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.5604396" visible="true" weight="0.32941177" />
       <window_info anchor="bottom" id="CheckStyle" order="9" sideWeight="0.49946752" weight="0.3299539" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.43894994" side_tool="true" visible="true" weight="0.32941177" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.43956044" side_tool="true" visible="true" weight="0.32941177" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.498779" weight="0.32941177" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49946752" weight="0.3299539" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24973376" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.24786325" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.24786325" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Database" order="6" />
@@ -412,13 +420,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java</url>
-          <line>128</line>
+          <line>129</line>
           <properties />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java</url>
-          <line>142</line>
+          <line>143</line>
           <properties />
           <option name="timeStamp" value="32" />
         </line-breakpoint>
@@ -705,38 +713,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/FileReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="145" column="63" lean-forward="true" selection-start-line="145" selection-start-column="63" selection-end-line="145" selection-end-column="63" />
+        <state relative-caret-position="193">
+          <caret line="101" column="48" selection-start-line="101" selection-start-column="48" selection-end-line="101" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounterManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="46" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="337" column="60" selection-start-line="337" selection-start-column="60" selection-end-line="337" selection-end-column="60" />
+        <state relative-caret-position="921">
+          <caret line="152" column="9" lean-forward="true" selection-start-line="152" selection-start-column="9" selection-end-line="152" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1140#1141#0" expanded="true" />
             <element signature="e#1190#1191#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/bboutcher/WordCounterManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="151" column="74" selection-start-line="151" selection-start-column="74" selection-end-line="151" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
