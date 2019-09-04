@@ -154,9 +154,9 @@ class WordCounter {
             return completedFuture(WordCounterStages.INIT);
         }
 
+        System.out.println();
+        System.out.println("Added paths: ");
         for (File f : this.paths) {
-            System.out.println();
-            System.out.println("Added paths: ");
             System.out.println(f.getAbsolutePath());
         }
 
@@ -238,7 +238,7 @@ class WordCounter {
     private CompletableFuture<ArrayList<File>> commandLineFileGather()
     {
         ArrayList<File> chosenPaths;
-        String[] pathArray = Utilities.getArrayInput("Please provide a list of file paths, delimited by a space.");
+        String[] pathArray = Utilities.getArrayInput("Please provide a list of file paths, and type \"done\" when finished.");
 
         if (pathArray == null || pathArray.length < 1) {
             System.out.println("No path list has been generated.");

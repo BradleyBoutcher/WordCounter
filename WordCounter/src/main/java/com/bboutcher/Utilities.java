@@ -88,7 +88,7 @@ final class Utilities {
             input = new Scanner(System.in);
             System.out.println(message);
             System.out.print("> ");
-            return input.next().split(" ");
+            return input.nextLine().split(" ");
         } catch (Exception e) {
             System.out.println("Unable to read path input. Please try again");
         }
