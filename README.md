@@ -24,17 +24,6 @@ Word Counter is implemented in two ways: 'headless' and 'interactive'. In intera
 
 > NOTE: Words are split with any non-letter character. No space is put in place of the character. For example, "Bill.Likes.Dogs" would be interpreted as a single word, "BillLikeDogs".
 
-## Additional thoughts
-The data "flow" is as follows:
-
-Convert each input path to a File -> Retrieve and Return the total word count for each individual file -> Merge each individual word count into the total
-
-Alternatively, it would be simple enough to merge the word count into the total as we process each individual word, however this removes some flexibility. Such a process would look like this:
-
-Turn each path into a file -> Retrieve and parse each word from the file ->  Add or put the word in our overall map
-
-The goal was to break it into a reasonable amount of small pieces to be handled individually before returning as a whole, which can be done in many ways with relative simplicity.
-
 #### In the state manager, the following commands are supported:
 1: Create a new Word Reader
 2: Print a saved Word Reader
@@ -57,11 +46,27 @@ In headless mode, the user can pass in any number of file paths through the comm
 
 ### Asynchronicity 
 The methods used within make use of the EA Async library, which is a simplification of traditional `CompletedFuture` chains, and makes code a bit more readable. This also allows us to break up the reading of files into a few stages without blocking:
+
 1. Retrieve the word count from a single file
+    
     a. Strip down invalid characters from each word
+
 2. Merge the word count into the running total
+    
     a. Increment or decrement each word from the running total, as needed
+
 When using the interface, the user can add additional paths or remove paths, which retriggers this process.
+
+## Additional thoughts
+The data "flow" is as follows:
+
+Convert each input path to a File -> Retrieve and Return the total word count for each individual file -> Merge each individual word count into the total
+
+Alternatively, it would be simple enough to merge the word count into the total as we process each individual word, however this removes some flexibility. Such a process would look like this:
+
+Turn each path into a file -> Retrieve and parse each word from the file ->  Add or put the word in our overall map
+
+The goal was to break it into a reasonable amount of small pieces to be handled individually before returning as a whole, which can be done in many ways with relative simplicity.
 
 ### Debugging
 Run the included bash file, `run.sh` with the parameter `debug` like so:
