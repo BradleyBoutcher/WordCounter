@@ -2,6 +2,7 @@
 
 ### Introduction
 Word Counter is a simple Java application for aggregating words and their number of appearances from a list of file paths.
+> Note: For the simplest understanding of the process, look at the HeadlessFileReader class in FileReader.jave
 
 ### Running
 Word Counter is created using Maven, which is the recommended way to build and run. Within the directory, run:
@@ -23,6 +24,7 @@ Word Counter is implemented in two ways: 'headless' and 'interactive'. In intera
 
 > NOTE: Words are split with any non-letter character. No space is put in place of the character. For example, "Bill.Likes.Dogs" would be interpreted as a single word, "BillLikeDogs".
 
+## Additional thoughts
 The data "flow" is as follows:
 
 Convert each input path to a File -> Retrieve and Return the total word count for each individual file -> Merge each individual word count into the total
@@ -30,6 +32,8 @@ Convert each input path to a File -> Retrieve and Return the total word count fo
 Alternatively, it would be simple enough to merge the word count into the total as we process each individual word, however this removes some flexibility. Such a process would look like this:
 
 Turn each path into a file -> Retrieve and parse each word from the file ->  Add or put the word in our overall map
+
+The goal was to break it into a reasonable amount of small pieces to be handled individually before returning as a whole, which can be done in many ways with relative simplicity.
 
 #### In the state manager, the following commands are supported:
 1: Create a new Word Reader
