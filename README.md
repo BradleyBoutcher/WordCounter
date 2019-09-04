@@ -2,7 +2,7 @@
 
 ### Introduction
 Word Counter is a simple Java application for aggregating words and their number of appearances from a list of file paths.
-> Note: For the simplest understanding of the process, look at the HeadlessFileReader class in FileReader.jave
+> Note: For the simplest understanding of the process, look at the HeadlessFileReader class in FileReader.java
 
 ### Running
 Word Counter is created using Maven, which is the recommended way to build and run. Within the directory, run:
