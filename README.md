@@ -17,7 +17,7 @@ or manually specify the JAR:
 > java -jar target/wordcounter-1.0-SNAPSHOT.jar
 
 To run in non-interactive mode, use: 
-> java -jar target/wordcounter-1.0-SNAPSHOT.jar <File Paths...>
+> java -jar target/wordcounter-1.0-SNAPSHOT.jar \< File Paths... \<
 
 ### Implementation
 Word Counter is implemented in two ways: 'headless' and 'interactive'. In interactive mode, we use a combination of builder and state patterns for generating and managing any number of `WordCounter` objects. A `WordCounter` is a custom data structure that also provides an interface for reading files, with a local `FileReader`, which contains non-interactive methods for interacting with a  given file.
