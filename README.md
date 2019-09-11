@@ -28,17 +28,26 @@ Word Counter is implemented in two ways: 'headless' and 'interactive'. In intera
 
 #### In the state manager, the following commands are supported:
 1: Create a new Word Reader
+
 2: Print a saved Word Reader
+
 3: Save current Word Reader
+
 4: Open a saved Word Reader
+
 5: Delete a saved Word Reader
+
 0: Exit
 
 #### In the `WordCounter`s, the following commands are supported: 
 1: Add a file path to this Word Reader 
+
 2: Remove a file path from this Word Reader
+
 3: Print the aggregate word count of this Word Reader
+
 4: List file paths in this word reader
+
 0: Exit
 
 Additionally, the user can choose to use the command line or the native file explorer for their OS to select file paths.
